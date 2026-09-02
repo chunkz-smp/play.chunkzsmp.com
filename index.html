@@ -13,12 +13,10 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: #121215;
             color: #ffffff;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
         /* Bovenbalk */
@@ -28,11 +26,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #09090a;
+            border-bottom: 2px solid #2a2b32;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
         .top-bar-left {
@@ -45,12 +42,301 @@
             font-size: 20px;
             color: #aaaaaa;
             cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .menu-toggle:hover {
-            color: #ffffff;
         }
 
         .site-url {
-            font-size
+            font-size: 16px;
+            color: #FFAA00;
+            font-weight: bold;
+            text-shadow: 1px 1px 0px #000;
+        }
+
+        /* Layout Grid */
+        .page-wrapper {
+            display: flex;
+            min-height: calc(100vh - 55px);
+        }
+
+        /* Linker Zijmenu */
+        .sidebar {
+            width: 250px;
+            background-color: #1a1b20;
+            border-right: 2px solid #2a2b32;
+            padding: 20px 0;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-item {
+            padding: 14px 20px;
+            color: #cccccc;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: #24252b;
+            color: #FFAA00;
+            border-left-color: #FFAA00;
+        }
+
+        /* Inhoudsgebied */
+        .main-content {
+            flex: 1;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .content-card {
+            background-color: #1e1f24;
+            border: 2px solid #2a2b32;
+            border-radius: 6px;
+            padding: 30px;
+            max-width: 650px;
+            width: 100%;
+            display: none;
+        }
+
+        .content-card.active {
+            display: block;
+        }
+
+        .content-card h1 {
+            font-size: 28px;
+            color: #55FFFF;
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .welcome-text {
+            color: #dddddd;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        /* Minecraft Blokken */
+        .blocks-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .mc-block {
+            background-color: #24252b;
+            border: 1px solid #33333d;
+            border-radius: 4px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .mc-block i {
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+
+        .mc-block h3 {
+            font-size: 12px;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .mc-block p {
+            font-size: 11px;
+            color: #888888;
+        }
+
+        .grass { border-top: 3px solid #5CDE56; }
+        .grass i { color: #5CDE56; }
+        
+        .diamond { border-top: 3px solid #55FFFF; }
+        .diamond i { color: #55FFFF; }
+
+        .gold { border-top: 3px solid #FFAA00; }
+        .gold i { color: #FFAA00; }
+
+        .emerald { border-top: 3px solid #00AA00; }
+        .emerald i { color: #00AA00; }
+
+        /* Informatie voor ouders */
+        .parents-block {
+            border-top: 2px solid #2a2b32;
+            padding-top: 20px;
+        }
+
+        .parents-title {
+            font-size: 18px;
+            color: #FFAA00;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+
+        .parents-text {
+            font-size: 13px;
+            color: #aaaaaa;
+            line-height: 1.6;
+        }
+
+        /* Discord Knop */
+        .discord-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #5865F2;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 99;
+        }
+
+        /* Shop Grid */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .shop-item {
+            background: #24252b;
+            border: 1px solid #33333d;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .buy-btn {
+            background: #3CA336;
+            color: white;
+            border: none;
+            padding: 8px;
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+
+        /* Mobiel */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                top: 55px;
+                left: 0;
+                bottom: 0;
+                z-index: 90;
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <i class="fas fa-bars menu-toggle" onclick="toggleMenu()"></i>
+            <span class="site-url">play.chunkzsmp.com</span>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+        <aside class="sidebar" id="sidebar">
+            <ul class="nav-list">
+                <li class="nav-item active" onclick="switchTab('home', this)">Home</li>
+                <li class="nav-item" onclick="switchTab('ranks', this)">Ranks</li>
+                <li class="nav-item" onclick="switchTab('keys', this)">Keys</li>
+                <li class="nav-item" onclick="switchTab('extra', this)">Extra</li>
+                <li class="nav-item" onclick="switchTab('boosters', this)">Boosters</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-card active" id="tab-home">
+                <h1>Welcome!</h1>
+                <p class="welcome-text">
+                    We are so glad you are visiting our official webshop! Whether you are looking for a new rank, unique items, or extra features to elevate your adventure on the server to the next level: you've come to the right place. Your support helps us to continue building and maintaining an amazing community.
+                </p>
+
+                <div class="blocks-container">
+                    <div class="mc-block grass">
+                        <i class="fas fa-cubes"></i>
+                        <h3>Survival SMP</h3>
+                        <p>Enjoy land claims.</p>
+                    </div>
+                    <div class="mc-block diamond">
+                        <i class="fas fa-gem"></i>
+                        <h3>Custom Ranks</h3>
+                        <p>Unlock perks.</p>
+                    </div>
+                    <div class="mc-block gold">
+                        <i class="fas fa-box-open"></i>
+                        <h3>Crate Keys</h3>
+                        <p>Unique rewards.</p>
+                    </div>
+                    <div class="mc-block emerald">
+                        <i class="fas fa-users"></i>
+                        <h3>Community</h3>
+                        <p>Join Discord.</p>
+                    </div>
+                </div>
+
+                <div class="parents-block">
+                    <h2 class="parents-title">Information for Parents</h2>
+                    <p class="parents-text">
+                        We understand that you would like to know where your child is making a purchase. In short: your child plays in an online community (an SMP) with many others. Everyone starts with a basic account, but we offer extra options to make the experience more enjoyable.
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-card" id="tab-ranks">
+                <h1>Ranks</h1>
+                <div class="shop-grid">
+                    <div class="shop-item">
+                        <h3>VIP Rank</h3>
+                        <button class="buy-btn">View Rank</button>
+                    </div>
+                    <div class="shop-item">
+                        <h3>MVP Rank</h3>
+                        <button class="buy-btn">View Rank</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card" id="tab-keys">
+                <h1>Keys</h1>
+                <div class="shop-grid">
+                    <div class="shop-item">
+                        <h3>Rare Key</h3>
+                        <button class="buy-btn">View Key</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card" id="tab-extra">
+                <h1>Extra</h1>
+                <p class="welcome-text">Extra options and features.</p>
+            </div>
+
+            <div class="content-card" id="tab-boosters
