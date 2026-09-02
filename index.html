@@ -282,6 +282,15 @@
             text-shadow: 1px 1px 0px #000;
         }
 
+        .free-btn {
+            background: #FFAA00;
+            color: #000;
+            text-shadow: none;
+        }
+        .free-btn:hover {
+            background: #e69900;
+        }
+
         /* Shake Effect voor Easter Egg */
         @keyframes tntShake {
             0% { transform: translate(1px, 1px) rotate(0deg); }
@@ -294,6 +303,125 @@
 
         .shake {
             animation: tntShake 0.15s infinite;
+        }
+
+        /* Pop-up Modal voor Free Key Server IP (Discord Stijl) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .discord-card {
+            background-color: #2b2d31;
+            border-left: 5px solid #f97316; /* Oranje Discord Accent */
+            border-radius: 8px;
+            padding: 25px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #aaaaaa;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #ffffff;
+        }
+
+        .discord-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .discord-field {
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #dbdee1;
+        }
+
+        .discord-label {
+            font-weight: bold;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 3px;
+        }
+
+        .discord-value {
+            color: #b5bac1;
+            margin-left: 26px;
+        }
+
+        .server-ip-box {
+            background: #1e1f22;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #35363c;
+            font-family: monospace;
+            color: #55FFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+            margin-left: 26px;
+        }
+
+        .copy-ip-btn {
+            background: #5865F2;
+            border: none;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .copy-ip-btn:hover {
+            background: #4752C4;
+        }
+
+        .tagline-box {
+            margin-top: 20px;
+            padding-top: 12px;
+            border-top: 1px solid #35363c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #b5bac1;
+        }
+
+        .square-icon {
+            width: 14px;
+            height: 14px;
+            background-color: #f97316;
+            display: inline-block;
+            border-radius: 2px;
         }
 
         /* Mobiel */
@@ -392,7 +520,7 @@
                         <i class="fas fa-coins"></i>
                         <span>GOLD</span>
                     </div>
-                    <!-- TNT blok met Easter Egg 'onclick' -->
+                    <!-- TNT blok met Easter Egg -->
                     <div class="mc-tile tile-tnt" id="tntTile" onclick="triggerTntEasterEgg()">
                         <i class="fas fa-bomb"></i>
                         <span>TNT</span>
@@ -430,12 +558,20 @@
                 <h1>Crate Keys</h1>
                 <p class="welcome-text">Unlock crates in-game for rare items!</p>
                 <div class="shop-grid">
+                    <!-- FREE KEY ITEM -->
+                    <div class="shop-item" style="border-color: #FFAA00;">
+                        <h3 style="color:#FFAA00;">🎁 Free Starter Key</h3>
+                        <p style="font-size:12px; color:#aaa; margin: 8px 0;">Claim your free starter rewards in-game!</p>
+                        <button class="buy-btn free-btn" onclick="openClaimModal()">Claim Free Key</button>
+                    </div>
                     <div class="shop-item">
                         <h3 style="color:#55FF55;">Rare Key</h3>
+                        <p style="font-size:12px; color:#aaa; margin: 8px 0;">Valuable items and gear.</p>
                         <button class="buy-btn">View Key</button>
                     </div>
                     <div class="shop-item">
                         <h3 style="color:#FF55FF;">Legendary Key</h3>
+                        <p style="font-size:12px; color:#aaa; margin: 8px 0;">Top-tier equipment and cosmetics.</p>
                         <button class="buy-btn">View Key</button>
                     </div>
                 </div>
@@ -453,6 +589,43 @@
                 <p class="welcome-text">Activate multipliers for the entire server!</p>
             </div>
         </main>
+    </div>
+
+    <!-- Pop-up Modal voor Free Key Claim (In de stijl van de Discord foto) -->
+    <div class="modal-overlay" id="claimModal">
+        <div class="discord-card">
+            <i class="fas fa-times modal-close" onclick="closeClaimModal()"></i>
+            
+            <div class="discord-title">CHUNKZ SMP</div>
+
+            <div class="discord-field">
+                <div class="discord-label"><i class="fas fa-globe" style="color: #3b82f6;"></i> Server IP</div>
+                <div class="server-ip-box">
+                    <span id="ipText">chunkzsmp.g-portal.works</span>
+                    <button class="copy-ip-btn" onclick="copyIP()">Kopieer</button>
+                </div>
+            </div>
+
+            <div class="discord-field">
+                <div class="discord-label"><i class="fas fa-map" style="color: #60a5fa;"></i> Edition</div>
+                <div class="discord-value">Java Edition</div>
+            </div>
+
+            <div class="discord-field">
+                <div class="discord-label"><i class="fas fa-swords" style="color: #9ca3af;"></i> PvP</div>
+                <div class="discord-value">Enabled</div>
+            </div>
+
+            <div class="discord-field">
+                <div class="discord-label"><i class="fas fa-cog" style="color: #9ca3af;"></i> Difficulty</div>
+                <div class="discord-value">Normal</div>
+            </div>
+
+            <div class="tagline-box">
+                <span class="square-icon"></span>
+                <span>Where every chunk has a story.</span>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -479,7 +652,6 @@
             tntClicks++;
             const tntTile = document.getElementById('tntTile');
             
-            // Laat het blokje trillen na elke klik
             tntTile.classList.add('shake');
             setTimeout(() => tntTile.classList.remove('shake'), 200);
 
@@ -489,6 +661,21 @@
                     tntClicks = 0;
                 }, 100);
             }
+        }
+
+        // Modal Functies voor Free Key
+        function openClaimModal() {
+            document.getElementById('claimModal').classList.add('active');
+        }
+
+        function closeClaimModal() {
+            document.getElementById('claimModal').classList.remove('active');
+        }
+
+        function copyIP() {
+            const ip = "chunkzsmp.g-portal.works";
+            navigator.clipboard.writeText(ip);
+            alert("Server IP gekopieerd naar klembord: " + ip);
         }
     </script>
 </body>
