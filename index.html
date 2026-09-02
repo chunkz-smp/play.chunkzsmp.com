@@ -107,7 +107,7 @@
             box-shadow: inset 0 0 5px rgba(255, 170, 0, 0.3);
         }
 
-        /* Discord Knop direct onder Home */
+        /* Discord Knop onder Home */
         .discord-menu-btn {
             background-color: #5865F2 !important;
             color: #ffffff !important;
@@ -202,6 +202,7 @@
             font-weight: bold;
             box-shadow: 0 4px 8px rgba(0,0,0,0.5);
             transition: transform 0.2s ease;
+            cursor: pointer;
         }
 
         .mc-tile:hover {
@@ -281,6 +282,20 @@
             text-shadow: 1px 1px 0px #000;
         }
 
+        /* Shake Effect voor Easter Egg */
+        @keyframes tntShake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            40% { transform: translate(1px, -1px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            80% { transform: translate(2px, 1px) rotate(1deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        .shake {
+            animation: tntShake 0.15s infinite;
+        }
+
         /* Mobiel */
         @media (max-width: 768px) {
             .sidebar {
@@ -307,6 +322,7 @@
     </header>
 
     <div class="page-wrapper">
+        <!-- Zijkant Menu -->
         <aside class="sidebar" id="sidebar">
             <ul class="nav-list">
                 <li>
@@ -314,6 +330,7 @@
                         <span>Home</span>
                     </button>
                 </li>
+                <!-- Discord Knop -->
                 <li>
                     <a href="https://discord.gg/uEhgTWDu" target="_blank" class="nav-btn discord-menu-btn">
                         <span><i class="fab fa-discord" style="margin-right: 8px;"></i> Discord</span>
@@ -345,7 +362,9 @@
             </ul>
         </aside>
 
+        <!-- Inhoud -->
         <main class="main-content">
+            <!-- Home Card -->
             <div class="content-card active" id="tab-home">
                 <h1>Welcome!</h1>
                 <p class="welcome-text">
@@ -359,6 +378,7 @@
                     </p>
                 </div>
 
+                <!-- Minecraft Blokken Onderaan -->
                 <div class="minecraft-blocks-footer">
                     <div class="mc-tile tile-grass">
                         <i class="fas fa-seedling"></i>
@@ -372,7 +392,8 @@
                         <i class="fas fa-coins"></i>
                         <span>GOLD</span>
                     </div>
-                    <div class="mc-tile tile-tnt">
+                    <!-- TNT blok met Easter Egg 'onclick' -->
+                    <div class="mc-tile tile-tnt" id="tntTile" onclick="triggerTntEasterEgg()">
                         <i class="fas fa-bomb"></i>
                         <span>TNT</span>
                     </div>
@@ -382,9 +403,11 @@
                     </div>
                 </div>
 
+                <!-- Banner Afbeelding -->
                 <img src="14721.jpg" alt="Chunkz SMP Logo" class="banner-img" onerror="this.style.display='none'">
             </div>
 
+            <!-- Ranks Card -->
             <div class="content-card" id="tab-ranks">
                 <h1>Ranks</h1>
                 <p class="welcome-text">Select a rank to support Chunkz SMP!</p>
@@ -402,6 +425,7 @@
                 </div>
             </div>
 
+            <!-- Keys Card -->
             <div class="content-card" id="tab-keys">
                 <h1>Crate Keys</h1>
                 <p class="welcome-text">Unlock crates in-game for rare items!</p>
@@ -417,11 +441,13 @@
                 </div>
             </div>
 
+            <!-- Extra Card -->
             <div class="content-card" id="tab-extra">
                 <h1>Extra Items</h1>
                 <p class="welcome-text">Additional claims and perks for your account.</p>
             </div>
 
+            <!-- Boosters Card -->
             <div class="content-card" id="tab-boosters">
                 <h1>Server Boosters</h1>
                 <p class="welcome-text">Activate multipliers for the entire server!</p>
@@ -444,6 +470,24 @@
 
             if (window.innerWidth <= 768) {
                 document.getElementById('sidebar').classList.remove('open');
+            }
+        }
+
+        // Easter Egg Logica
+        let tntClicks = 0;
+        function triggerTntEasterEgg() {
+            tntClicks++;
+            const tntTile = document.getElementById('tntTile');
+            
+            // Laat het blokje trillen na elke klik
+            tntTile.classList.add('shake');
+            setTimeout(() => tntTile.classList.remove('shake'), 200);
+
+            if (tntClicks === 5) {
+                setTimeout(() => {
+                    alert("💥 BOOM! You activated the TNT Easter Egg!\n\nUse secret discount code: 'CHUNKZ10' for 10% OFF! 🤫");
+                    tntClicks = 0;
+                }, 100);
             }
         }
     </script>
