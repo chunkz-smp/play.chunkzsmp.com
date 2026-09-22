@@ -306,7 +306,7 @@
             animation: tntShake 0.15s infinite;
         }
 
-        /* Pop-up Modal voor Free Key Server IP (Discord Stijl) */
+        /* Pop-up Modal voor Free Key Server IP */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -425,6 +425,22 @@
             border-radius: 2px;
         }
 
+        /* Floating text animatie voor clicker */
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-30px); }
+        }
+
+        .floating-num {
+            position: absolute;
+            color: #55FFFF;
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: 1px 1px 2px #000;
+            pointer-events: none;
+            animation: floatUp 0.8s ease-out forwards;
+        }
+
         /* Mobiel */
         @media (max-width: 768px) {
             .sidebar {
@@ -459,7 +475,6 @@
                         <span>Home</span>
                     </button>
                 </li>
-                <!-- Vaste Discord Link -->
                 <li>
                     <a href="https://discord.gg/chunkzsmp" target="_blank" class="nav-btn discord-menu-btn">
                         <span><i class="fab fa-discord" style="margin-right: 8px;"></i> Discord</span>
@@ -469,6 +484,11 @@
                 <li>
                     <button class="nav-btn" onclick="switchTab('keys', this)">
                         <span>Keys</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="nav-btn" onclick="switchTab('game', this)">
+                        <span>🎮 Mini Game</span>
                     </button>
                 </li>
             </ul>
@@ -519,7 +539,7 @@
                 <img src="14721.jpg" alt="Chunkz SMP Logo" class="banner-img" onerror="this.style.display='none'">
             </div>
 
-            <!-- Keys Card (Alleen Free Key) -->
+            <!-- Keys Card -->
             <div class="content-card" id="tab-keys">
                 <h1>Crate Keys</h1>
                 <p class="welcome-text">Claim your free rewards in-game!</p>
@@ -528,6 +548,38 @@
                         <h3 style="color:#FFAA00; margin-bottom: 8px;">🎁 Free Starter Key</h3>
                         <p style="font-size:13px; color:#aaa; margin-bottom: 15px;">Claim your free starter rewards directly on the server!</p>
                         <button class="buy-btn free-btn" onclick="openClaimModal()">Claim Free Key</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Game Card -->
+            <div class="content-card" id="tab-game">
+                <h1>⛏️ Diamond Miner</h1>
+                <p class="welcome-text">Click the Diamond Ore to mine diamonds and upgrade your gear!</p>
+
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="font-size: 32px; color: #55FFFF; text-shadow: 2px 2px 0px #000;" id="scoreDisplay">💎 0 Diamonds</h2>
+                    <p style="font-size: 13px; color: #aaa;" id="statsDisplay">Per click: 1 | Auto: 0/sec</p>
+                </div>
+
+                <!-- Clickable Diamond Ore -->
+                <div style="display: flex; justify-content: center; margin-bottom: 30px; position: relative;" id="oreContainer">
+                    <div id="diamondOre" onclick="mineDiamond(event)" style="width: 120px; height: 120px; background: #2cbdbd; border: 4px solid #55FFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 55px; cursor: pointer; user-select: none; box-shadow: inset 0 0 15px rgba(0,0,0,0.6), 0 6px 12px rgba(0,0,0,0.5); transition: transform 0.05s ease;">
+                        💎
+                    </div>
+                </div>
+
+                <!-- Upgrades Grid -->
+                <div class="shop-grid">
+                    <div class="shop-item" style="border-color: #383a42;">
+                        <h3 style="color:#FFAA00;">Pickaxe Upgrade</h3>
+                        <p style="font-size:12px; color:#aaa; margin: 8px 0;" id="pickaxeDesc">Pickaxe: Wooden (+1 / click)</p>
+                        <button class="buy-btn free-btn" id="upgradePickaxeBtn" onclick="upgradePickaxe()">Upgrade (Cost: 15 💎)</button>
+                    </div>
+                    <div class="shop-item" style="border-color: #383a42;">
+                        <h3 style="color:#55FF55;">Allay Auto-Miner</h3>
+                        <p style="font-size:12px; color:#aaa; margin: 8px 0;" id="allayDesc">Owned: 0 (+1 💎/sec)</p>
+                        <button class="buy-btn free-btn" id="buyAllayBtn" onclick="buyAllay()">Hire Allay (Cost: 50 💎)</button>
                     </div>
                 </div>
             </div>
@@ -620,6 +672,90 @@
             navigator.clipboard.writeText(ip);
             alert("Server IP gekopieerd naar klembord: " + ip);
         }
+
+        // --- MINI GAME LOGICA ---
+        let diamonds = 0;
+        let clickPower = 1;
+        let pickaxeIndex = 0;
+        let pickaxeCost = 15;
+        let allays = 0;
+        let allayCost = 50;
+
+        const pickaxeTiers = [
+            { name: "Wooden", power: 1 },
+            { name: "Stone", power: 3 },
+            { name: "Iron", power: 7 },
+            { name: "Gold", power: 15 },
+            { name: "Diamond", power: 35 },
+            { name: "Netherite", power: 80 }
+        ];
+
+        function mineDiamond(e) {
+            diamonds += clickPower;
+            updateGameUI();
+
+            // Animatie van blokje
+            const ore = document.getElementById('diamondOre');
+            ore.style.transform = "scale(0.92)";
+            setTimeout(() => ore.style.transform = "scale(1)", 50);
+
+            // Floating +X tekst
+            const floatNum = document.createElement('div');
+            floatNum.className = 'floating-num';
+            floatNum.innerText = '+' + clickPower;
+            floatNum.style.left = (e.offsetX + 20) + 'px';
+            floatNum.style.top = (e.offsetY - 10) + 'px';
+            document.getElementById('oreContainer').appendChild(floatNum);
+
+            setTimeout(() => floatNum.remove(), 800);
+        }
+
+        function upgradePickaxe() {
+            if (diamonds >= pickaxeCost && pickaxeIndex < pickaxeTiers.length - 1) {
+                diamonds -= pickaxeCost;
+                pickaxeIndex++;
+                clickPower = pickaxeTiers[pickaxeIndex].power;
+                pickaxeCost = Math.floor(pickaxeCost * 2.8);
+                updateGameUI();
+            }
+        }
+
+        function buyAllay() {
+            if (diamonds >= allayCost) {
+                diamonds -= allayCost;
+                allays++;
+                allayCost = Math.floor(allayCost * 2.2);
+                updateGameUI();
+            }
+        }
+
+        function updateGameUI() {
+            document.getElementById('scoreDisplay').innerText = `💎 ${diamonds} Diamonds`;
+            document.getElementById('statsDisplay').innerText = `Per click: ${clickPower} | Auto: ${allays}/sec`;
+
+            const pickBtn = document.getElementById('upgradePickaxeBtn');
+            const pickDesc = document.getElementById('pickaxeDesc');
+            if (pickaxeIndex < pickaxeTiers.length - 1) {
+                const nextTier = pickaxeTiers[pickaxeIndex + 1];
+                pickDesc.innerText = `Pickaxe: ${pickaxeTiers[pickaxeIndex].name} (+${clickPower}/click)`;
+                pickBtn.innerText = `Upgrade to ${nextTier.name} (${pickaxeCost} 💎)`;
+            } else {
+                pickDesc.innerText = `Pickaxe: Netherite (MAX TIER)`;
+                pickBtn.innerText = `MAX LEVEL`;
+                pickBtn.disabled = true;
+            }
+
+            document.getElementById('allayDesc').innerText = `Owned: ${allays} (+${allays} 💎/sec)`;
+            document.getElementById('buyAllayBtn').innerText = `Hire Allay (${allayCost} 💎)`;
+        }
+
+        // Auto-miner lus
+        setInterval(() => {
+            if (allays > 0) {
+                diamonds += allays;
+                updateGameUI();
+            }
+        }, 1000);
     </script>
 </body>
 </html>
