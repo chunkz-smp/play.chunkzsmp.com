@@ -217,32 +217,12 @@
         }
 
         /* Blok Stijlen */
-        .tile-grass {
-            background: linear-gradient(to bottom, #5CDE56 35%, #8B5A2B 35%);
-            border-top-color: #72f06c;
-        }
-        .tile-diamond {
-            background: #2cbdbd;
-            border-top-color: #55FFFF;
-            color: #e0ffff;
-        }
-        .tile-gold {
-            background: #d49008;
-            border-top-color: #FFAA00;
-            color: #fff8dc;
-        }
-        .tile-tnt {
-            background: #d93838;
-            border-top-color: #ff5555;
-            color: #ffffff;
-        }
-        .tile-obsidian {
-            background: #191226;
-            border-top-color: #4a346b;
-            color: #a873e8;
-        }
+        .tile-grass { background: linear-gradient(to bottom, #5CDE56 35%, #8B5A2B 35%); border-top-color: #72f06c; }
+        .tile-diamond { background: #2cbdbd; border-top-color: #55FFFF; color: #e0ffff; }
+        .tile-gold { background: #d49008; border-top-color: #FFAA00; color: #fff8dc; }
+        .tile-tnt { background: #d93838; border-top-color: #ff5555; color: #ffffff; }
+        .tile-obsidian { background: #191226; border-top-color: #4a346b; color: #a873e8; }
 
-        /* Banner Afbeelding */
         .banner-img {
             width: 100%;
             height: auto;
@@ -288,9 +268,7 @@
             text-shadow: none;
             font-size: 15px;
         }
-        .free-btn:hover {
-            background: #e69900;
-        }
+        .free-btn:hover { background: #e69900; }
 
         /* Shake Effect voor Easter Egg */
         @keyframes tntShake {
@@ -301,12 +279,9 @@
             80% { transform: translate(2px, 1px) rotate(1deg); }
             100% { transform: translate(1px, -2px) rotate(-1deg); }
         }
+        .shake { animation: tntShake 0.15s infinite; }
 
-        .shake {
-            animation: tntShake 0.15s infinite;
-        }
-
-        /* Pop-up Modal voor Free Key Server IP */
+        /* Pop-up Modal voor Free Key */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -320,10 +295,7 @@
             z-index: 200;
             padding: 20px;
         }
-
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .discord-card {
             background-color: #2b2d31;
@@ -344,10 +316,7 @@
             font-size: 20px;
             cursor: pointer;
         }
-
-        .modal-close:hover {
-            color: #ffffff;
-        }
+        .modal-close:hover { color: #ffffff; }
 
         .discord-title {
             font-size: 22px;
@@ -357,25 +326,9 @@
             letter-spacing: 0.5px;
         }
 
-        .discord-field {
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: #dbdee1;
-        }
-
-        .discord-label {
-            font-weight: bold;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 3px;
-        }
-
-        .discord-value {
-            color: #b5bac1;
-            margin-left: 26px;
-        }
+        .discord-field { margin-bottom: 15px; font-size: 14px; color: #dbdee1; }
+        .discord-label { font-weight: bold; color: #ffffff; display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+        .discord-value { color: #b5bac1; margin-left: 26px; }
 
         .server-ip-box {
             background: #1e1f22;
@@ -401,10 +354,7 @@
             font-size: 12px;
             font-weight: bold;
         }
-
-        .copy-ip-btn:hover {
-            background: #4752C4;
-        }
+        .copy-ip-btn:hover { background: #4752C4; }
 
         .tagline-box {
             margin-top: 20px;
@@ -440,6 +390,69 @@
             pointer-events: none;
             animation: floatUp 0.8s ease-out forwards;
         }
+
+        /* Mini Game Leaderboard Styles */
+        .player-bar {
+            background: #1a1b20;
+            border: 1px solid #33333d;
+            border-radius: 4px;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .player-input-box {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .player-input {
+            background: #111115;
+            border: 1px solid #383a42;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .leaderboard-box {
+            background: #1a1b20;
+            border: 2px solid #2a2b32;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 25px;
+        }
+
+        .leaderboard-box h3 {
+            color: #FFAA00;
+            font-size: 18px;
+            margin-bottom: 12px;
+            text-align: center;
+            text-shadow: 1px 1px 0px #000;
+        }
+
+        .leaderboard-list {
+            list-style: none;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: #24252b;
+            margin-bottom: 6px;
+            border-radius: 4px;
+            font-size: 13px;
+            border-left: 3px solid #383a42;
+        }
+
+        .leaderboard-item.top-1 { border-left-color: #FFAA00; background: #2d2a1d; }
+        .leaderboard-item.top-2 { border-left-color: #AAAAAA; }
+        .leaderboard-item.top-3 { border-left-color: #CD7F32; }
 
         /* Mobiel */
         @media (max-width: 768px) {
@@ -555,33 +568,64 @@
             <!-- Mini Game Card -->
             <div class="content-card" id="tab-game">
                 <h1>⛏️ Diamond Miner</h1>
-                <p class="welcome-text">Click the Diamond Ore to mine diamonds and upgrade your gear!</p>
+                <p class="welcome-text">Mine diamonds, upgrade your gear and climb the leaderboard!</p>
 
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <h2 style="font-size: 32px; color: #55FFFF; text-shadow: 2px 2px 0px #000;" id="scoreDisplay">💎 0 Diamonds</h2>
-                    <p style="font-size: 13px; color: #aaa;" id="statsDisplay">Per click: 1 | Auto: 0/sec</p>
+                <!-- Player Login / Name Bar -->
+                <div class="player-bar">
+                    <div>
+                        <span style="font-size: 12px; color: #aaa;">Player:</span>
+                        <strong style="color: #FFAA00; font-size: 15px;" id="activePlayerName">Not Logged In</strong>
+                    </div>
+                    <button class="copy-ip-btn" style="background: #383a42;" onclick="changePlayerName()">Change Name</button>
                 </div>
 
-                <!-- Clickable Diamond Ore -->
-                <div style="display: flex; justify-content: center; margin-bottom: 30px; position: relative;" id="oreContainer">
-                    <div id="diamondOre" onclick="mineDiamond(event)" style="width: 120px; height: 120px; background: #2cbdbd; border: 4px solid #55FFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 55px; cursor: pointer; user-select: none; box-shadow: inset 0 0 15px rgba(0,0,0,0.6), 0 6px 12px rgba(0,0,0,0.5); transition: transform 0.05s ease;">
-                        💎
+                <!-- Game Content (verborgen als er geen naam is ingevuld) -->
+                <div id="gameBody" style="display: none;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h2 style="font-size: 32px; color: #55FFFF; text-shadow: 2px 2px 0px #000;" id="scoreDisplay">💎 0 Diamonds</h2>
+                        <p style="font-size: 13px; color: #aaa;" id="statsDisplay">Per click: 1 | Auto: 0/sec</p>
+                    </div>
+
+                    <!-- Clickable Diamond Ore -->
+                    <div style="display: flex; justify-content: center; margin-bottom: 30px; position: relative;" id="oreContainer">
+                        <div id="diamondOre" onclick="mineDiamond(event)" style="width: 120px; height: 120px; background: #2cbdbd; border: 4px solid #55FFFF; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 55px; cursor: pointer; user-select: none; box-shadow: inset 0 0 15px rgba(0,0,0,0.6), 0 6px 12px rgba(0,0,0,0.5); transition: transform 0.05s ease;">
+                            💎
+                        </div>
+                    </div>
+
+                    <!-- Upgrades Grid -->
+                    <div class="shop-grid">
+                        <div class="shop-item" style="border-color: #383a42;">
+                            <h3 style="color:#FFAA00;">Pickaxe Upgrade</h3>
+                            <p style="font-size:12px; color:#aaa; margin: 8px 0;" id="pickaxeDesc">Pickaxe: Wooden (+1 / click)</p>
+                            <button class="buy-btn free-btn" id="upgradePickaxeBtn" onclick="upgradePickaxe()">Upgrade (Cost: 15 💎)</button>
+                        </div>
+                        <div class="shop-item" style="border-color: #383a42;">
+                            <h3 style="color:#55FF55;">Allay Auto-Miner</h3>
+                            <p style="font-size:12px; color:#aaa; margin: 8px 0;" id="allayDesc">Owned: 0 (+1 💎/sec)</p>
+                            <button class="buy-btn free-btn" id="buyAllayBtn" onclick="buyAllay()">Hire Allay (Cost: 50 💎)</button>
+                        </div>
+                    </div>
+
+                    <!-- LEADERBOARD -->
+                    <div class="leaderboard-box">
+                        <h3>🏆 Top Miners Leaderboard</h3>
+                        <div class="leaderboard-list" id="leaderboardContainer">
+                            <!-- Ingeladen via JS -->
+                        </div>
                     </div>
                 </div>
 
-                <!-- Upgrades Grid -->
-                <div class="shop-grid">
-                    <div class="shop-item" style="border-color: #383a42;">
-                        <h3 style="color:#FFAA00;">Pickaxe Upgrade</h3>
-                        <p style="font-size:12px; color:#aaa; margin: 8px 0;" id="pickaxeDesc">Pickaxe: Wooden (+1 / click)</p>
-                        <button class="buy-btn free-btn" id="upgradePickaxeBtn" onclick="upgradePickaxe()">Upgrade (Cost: 15 💎)</button>
-                    </div>
-                    <div class="shop-item" style="border-color: #383a42;">
-                        <h3 style="color:#55FF55;">Allay Auto-Miner</h3>
-                        <p style="font-size:12px; color:#aaa; margin: 8px 0;" id="allayDesc">Owned: 0 (+1 💎/sec)</p>
-                        <button class="buy-btn free-btn" id="buyAllayBtn" onclick="buyAllay()">Hire Allay (Cost: 50 💎)</button>
+                <!-- Name Input Box (getoond als er nog geen naam is ingesteld) -->
+                <div id="nameInputSection" style="text-align: center; padding: 20px 10px;">
+                    <h3 style="color: #FFAA00; margin-bottom: 8px;">Enter your Minecraft Name to play:</h3>
+                    <p style="font-size: 13px; color: #aaa; margin-bottom: 15px;">Your progress and leaderboard ranking will be saved under this name.</p>
+                    <div class="player-input-box" style="max-width: 320px; margin: 0 auto;">
+                        <input type="text" id="playerNameInput" class="player-input" placeholder="Minecraft Username..." maxlength="16">
+                        <button class="buy-btn free-btn" style="width: auto; margin: 0;" onclick="saveNewPlayerName()">Start Game</button>
                     </div>
                 </div>
+
             </div>
         </main>
     </div>
@@ -673,7 +717,8 @@
             alert("Server IP gekopieerd naar klembord: " + ip);
         }
 
-        // --- MINI GAME LOGICA ---
+        // --- MINI GAME & LEADERBOARD LOGICA ---
+        let currentPlayer = localStorage.getItem('chunkz_current_player') || '';
         let diamonds = 0;
         let clickPower = 1;
         let pickaxeIndex = 0;
@@ -690,9 +735,80 @@
             { name: "Netherite", power: 80 }
         ];
 
+        // Bij laden van de pagina speler controleren
+        window.addEventListener('DOMContentLoaded', () => {
+            if (currentPlayer) {
+                loadPlayerData(currentPlayer);
+            } else {
+                showNameInput();
+            }
+            renderLeaderboard();
+        });
+
+        function saveNewPlayerName() {
+            const input = document.getElementById('playerNameInput').value.trim();
+            if (input.length < 2) {
+                alert("Please enter a valid username (at least 2 characters).");
+                return;
+            }
+            currentPlayer = input;
+            localStorage.setItem('chunkz_current_player', currentPlayer);
+            loadPlayerData(currentPlayer);
+        }
+
+        function changePlayerName() {
+            showNameInput();
+        }
+
+        function showNameInput() {
+            document.getElementById('gameBody').style.display = 'none';
+            document.getElementById('nameInputSection').style.display = 'block';
+            document.getElementById('activePlayerName').innerText = 'Not Logged In';
+        }
+
+        function loadPlayerData(name) {
+            document.getElementById('nameInputSection').style.display = 'none';
+            document.getElementById('gameBody').style.display = 'block';
+            document.getElementById('activePlayerName').innerText = name;
+
+            const saved = localStorage.getItem('chunkz_player_' + name.toLowerCase());
+            if (saved) {
+                const data = JSON.parse(saved);
+                diamonds = data.diamonds || 0;
+                pickaxeIndex = data.pickaxeIndex || 0;
+                clickPower = pickaxeTiers[pickaxeIndex].power;
+                pickaxeCost = data.pickaxeCost || 15;
+                allays = data.allays || 0;
+                allayCost = data.allayCost || 50;
+            } else {
+                // Nieuwe speler reset
+                diamonds = 0;
+                pickaxeIndex = 0;
+                clickPower = 1;
+                pickaxeCost = 15;
+                allays = 0;
+                allayCost = 50;
+            }
+            updateGameUI();
+        }
+
+        function saveProgress() {
+            if (!currentPlayer) return;
+            const data = {
+                diamonds: diamonds,
+                pickaxeIndex: pickaxeIndex,
+                pickaxeCost: pickaxeCost,
+                allays: allays,
+                allayCost: allayCost
+            };
+            localStorage.setItem('chunkz_player_' + currentPlayer.toLowerCase(), JSON.stringify(data));
+            updateLeaderboardData(currentPlayer, diamonds);
+        }
+
         function mineDiamond(e) {
             diamonds += clickPower;
             updateGameUI();
+            saveProgress();
 
             // Animatie van blokje
             const ore = document.getElementById('diamondOre');
@@ -717,6 +833,7 @@
                 clickPower = pickaxeTiers[pickaxeIndex].power;
                 pickaxeCost = Math.floor(pickaxeCost * 2.8);
                 updateGameUI();
+                saveProgress();
             }
         }
 
@@ -726,6 +843,7 @@
                 allays++;
                 allayCost = Math.floor(allayCost * 2.2);
                 updateGameUI();
+                saveProgress();
             }
         }
 
@@ -749,11 +867,52 @@
             document.getElementById('buyAllayBtn').innerText = `Hire Allay (${allayCost} 💎)`;
         }
 
-        // Auto-miner lus
+        // Leaderboard Gegevens Bijwerken
+        function updateLeaderboardData(name, score) {
+            let leaderboard = JSON.parse(localStorage.getItem('chunkz_global_leaderboard') || '[]');
+            
+            const index = leaderboard.findIndex(item => item.name.toLowerCase() === name.toLowerCase());
+            if (index !== -1) {
+                leaderboard[index].score = Math.max(leaderboard[index].score, score);
+            } else {
+                leaderboard.push({ name: name, score: score });
+            }
+
+            leaderboard.sort((a, b) => b.score - a.score);
+            localStorage.setItem('chunkz_global_leaderboard', JSON.stringify(leaderboard));
+            renderLeaderboard();
+        }
+
+        function renderLeaderboard() {
+            const leaderboard = JSON.parse(localStorage.getItem('chunkz_global_leaderboard') || '[]');
+            const container = document.getElementById('leaderboardContainer');
+            container.innerHTML = '';
+
+            if (leaderboard.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#aaa; font-size:12px;">No highscores yet. Start mining!</p>';
+                return;
+            }
+
+            leaderboard.slice(0, 5).forEach((item, idx) => {
+                const topClass = idx === 0 ? 'top-1' : (idx === 1 ? 'top-2' : (idx === 2 ? 'top-3' : ''));
+                const medal = idx === 0 ? '🥇 ' : (idx === 1 ? '🥈 ' : (idx === 2 ? '🥉 ' : `#${idx + 1} `));
+                
+                const div = document.createElement('div');
+                div.className = `leaderboard-item ${topClass}`;
+                div.innerHTML = `
+                    <span><strong>${medal}${item.name}</strong></span>
+                    <span style="color: #55FFFF; font-weight: bold;">💎 ${item.score}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Auto-miner lus (Elke seconde)
         setInterval(() => {
-            if (allays > 0) {
+            if (allays > 0 && currentPlayer && document.getElementById('gameBody').style.display !== 'none') {
                 diamonds += allays;
                 updateGameUI();
+                saveProgress();
             }
         }, 1000);
     </script>
