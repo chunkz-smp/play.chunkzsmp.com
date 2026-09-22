@@ -107,7 +107,7 @@
             box-shadow: inset 0 0 5px rgba(255, 170, 0, 0.3);
         }
 
-        /* Discord Knop onder Home */
+        /* Discord Knop */
         .discord-menu-btn {
             background-color: #5865F2 !important;
             color: #ffffff !important;
@@ -256,16 +256,16 @@
         /* Shop Grid */
         .shop-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-top: 15px;
         }
 
         .shop-item {
             background: #24252b;
-            border: 2px solid #111111;
-            padding: 15px;
-            border-radius: 4px;
+            border: 2px solid #FFAA00;
+            padding: 20px;
+            border-radius: 6px;
             text-align: center;
         }
 
@@ -286,6 +286,7 @@
             background: #FFAA00;
             color: #000;
             text-shadow: none;
+            font-size: 15px;
         }
         .free-btn:hover {
             background: #e69900;
@@ -450,7 +451,7 @@
     </header>
 
     <div class="page-wrapper">
-        <!-- Zijkant Menu -->
+        <!-- Zijkant Menu (Home, Discord, Keys) -->
         <aside class="sidebar" id="sidebar">
             <ul class="nav-list">
                 <li>
@@ -458,33 +459,16 @@
                         <span>Home</span>
                     </button>
                 </li>
-                <!-- Discord Knop met bijgewerkte link -->
+                <!-- Vaste Discord Link -->
                 <li>
-                    <a href="https://discord.gg/BNTgytx9" target="_blank" class="nav-btn discord-menu-btn">
+                    <a href="https://discord.gg/chunkzsmp" target="_blank" class="nav-btn discord-menu-btn">
                         <span><i class="fab fa-discord" style="margin-right: 8px;"></i> Discord</span>
                         <i class="fas fa-external-link-alt" style="font-size: 12px;"></i>
                     </a>
                 </li>
                 <li>
-                    <button class="nav-btn" onclick="switchTab('ranks', this)">
-                        <span>Ranks</span>
-                        <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
-                    </button>
-                </li>
-                <li>
                     <button class="nav-btn" onclick="switchTab('keys', this)">
                         <span>Keys</span>
-                        <i class="fas fa-chevron-down" style="font-size: 12px;"></i>
-                    </button>
-                </li>
-                <li>
-                    <button class="nav-btn" onclick="switchTab('extra', this)">
-                        <span>Extra</span>
-                    </button>
-                </li>
-                <li>
-                    <button class="nav-btn" onclick="switchTab('boosters', this)">
-                        <span>Boosters</span>
                     </button>
                 </li>
             </ul>
@@ -535,63 +519,22 @@
                 <img src="14721.jpg" alt="Chunkz SMP Logo" class="banner-img" onerror="this.style.display='none'">
             </div>
 
-            <!-- Ranks Card -->
-            <div class="content-card" id="tab-ranks">
-                <h1>Ranks</h1>
-                <p class="welcome-text">Select a rank to support Chunkz SMP!</p>
-                <div class="shop-grid">
-                    <div class="shop-item">
-                        <h3 style="color:#FFAA00;">VIP Rank</h3>
-                        <p style="font-size:12px; color:#aaa; margin: 8px 0;">Fly permissions & special kits.</p>
-                        <button class="buy-btn">View Rank</button>
-                    </div>
-                    <div class="shop-item">
-                        <h3 style="color:#55FFFF;">MVP Rank</h3>
-                        <p style="font-size:12px; color:#aaa; margin: 8px 0;">All VIP perks + queue bypass.</p>
-                        <button class="buy-btn">View Rank</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Keys Card -->
+            <!-- Keys Card (Alleen Free Key) -->
             <div class="content-card" id="tab-keys">
                 <h1>Crate Keys</h1>
-                <p class="welcome-text">Unlock crates in-game for rare items!</p>
+                <p class="welcome-text">Claim your free rewards in-game!</p>
                 <div class="shop-grid">
-                    <!-- FREE KEY ITEM -->
-                    <div class="shop-item" style="border-color: #FFAA00;">
-                        <h3 style="color:#FFAA00;">🎁 Free Starter Key</h3>
-                        <p style="font-size:12px; color:#aaa; margin: 8px 0;">Claim your free starter rewards in-game!</p>
+                    <div class="shop-item">
+                        <h3 style="color:#FFAA00; margin-bottom: 8px;">🎁 Free Starter Key</h3>
+                        <p style="font-size:13px; color:#aaa; margin-bottom: 15px;">Claim your free starter rewards directly on the server!</p>
                         <button class="buy-btn free-btn" onclick="openClaimModal()">Claim Free Key</button>
                     </div>
-                    <div class="shop-item">
-                        <h3 style="color:#55FF55;">Rare Key</h3>
-                        <p style="font-size:12px; color:#aaa; margin: 8px 0;">Valuable items and gear.</p>
-                        <button class="buy-btn">View Key</button>
-                    </div>
-                    <div class="shop-item">
-                        <h3 style="color:#FF55FF;">Legendary Key</h3>
-                        <p style="font-size:12px; color:#aaa; margin: 8px 0;">Top-tier equipment and cosmetics.</p>
-                        <button class="buy-btn">View Key</button>
-                    </div>
                 </div>
-            </div>
-
-            <!-- Extra Card -->
-            <div class="content-card" id="tab-extra">
-                <h1>Extra Items</h1>
-                <p class="welcome-text">Additional claims and perks for your account.</p>
-            </div>
-
-            <!-- Boosters Card -->
-            <div class="content-card" id="tab-boosters">
-                <h1>Server Boosters</h1>
-                <p class="welcome-text">Activate multipliers for the entire server!</p>
             </div>
         </main>
     </div>
 
-    <!-- Pop-up Modal voor Free Key Claim (In de stijl van de Discord foto) -->
+    <!-- Pop-up Modal voor Free Key Claim -->
     <div class="modal-overlay" id="claimModal">
         <div class="discord-card">
             <i class="fas fa-times modal-close" onclick="closeClaimModal()"></i>
